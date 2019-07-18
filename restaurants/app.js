@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var inventoryRouter = require('./routes/inventory');
+var restaurantRouter = require('./routes/restaurant');
 
 //connect to mongoDB
 const {db: {mongoURI}} = require('./config/config')
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', inventoryRouter);
+app.use('/', restaurantRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -12,8 +12,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 const {app:{portNumber}} = require('../config/config');
-
-var port = normalizePort(portNumber || '5000');
+var port = normalizePort(portNumber || '5001');
 app.set('port', port);
 
 /**

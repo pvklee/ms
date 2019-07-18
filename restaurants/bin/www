@@ -13,7 +13,7 @@ var http = require('http');
  */
 
 const {app:{portNumber}} = require('../config/config');
-var port = normalizePort(portNumber || '5000');
+var port = normalizePort(portNumber || '5002');
 app.set('port', port);
 
 /**
