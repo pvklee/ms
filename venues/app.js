@@ -4,9 +4,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var usersRouter = require('./routes/users');
 var venuesRouter = require('./routes/venues');
-var reservationsRouter = require('./routes/reservations');
+
+//connect to mongoDB
+const {db: {mongoURI}} = require('./config/config')
+const mongoose = require('mongoose');
+mongoose
+  .connect(mongoURI, { useNewUrlParser: true })
+  .then(() => console.log("Connected to MongoDB successfully"))
+  .catch(err => console.log(err));
+//----------------
 
 var app = express();
 
@@ -16,14 +23,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/users', usersRouter);
-app.use('/venues', venuesRouter);
-app.use('/reservations', reservationsRouter);
+app.use('/', venuesRouter);
 
 // catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   next(createError(404, 'route does not exist'));
-// });
+app.use(function(req, res, next) {
+  next(createError(404));
+});
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -33,7 +38,10 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.status({err});
+  res.json({
+    message: err.message,
+    error: err
+  });
 });
 
 module.exports = app;

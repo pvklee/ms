@@ -7,13 +7,13 @@ const User = require('../models/User');
 
 exports.signup = async (req, res) => {
   const {errors, isValid} = validateSignup(req.body);
-  if(!isValid) {return res.status(400).json(errors);}
+  if(!isValid) {return res.json(errors);}
   const {email, password, firstname, lastname} = req.body;
 
   const user = await User.findOne({ email });
 
   if(user){
-    return res.status(400).json({email: 'email already taken'});
+    return res.json({email: 'email already taken'});
   }
 
   const hash = await bcrypt.hash(password, saltRounds);
@@ -22,7 +22,7 @@ exports.signup = async (req, res) => {
   try {
     result = await newUser.save();
   } catch (errs) {
-    return res.status(400).json(errs)
+    return res.json(errs)
   }
 
   const payload = {id: result.id, email};
@@ -40,13 +40,13 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res) => {
   const {errors, isValid} = validateLogin(req.body);
-  if(!isValid){return res.status(400).json(errors);}
+  if(!isValid){return res.json(errors);}
 
   const {email, password} = req.body;
   const user = await User.findOne({email});
 
   if(!user){
-    return res.status(400).json({username: 'no user with that email'});
+    return res.json({username: 'no user with that email'});
   }
   const match = await bcrypt.compare(password, user.password);
   if(match){
@@ -62,7 +62,7 @@ exports.login = async (req, res) => {
         });
       });
   }else{
-    return res.status(400).json({password: 'incorrect password'});
+    return res.json({password: 'incorrect password'});
   }
 }
 
