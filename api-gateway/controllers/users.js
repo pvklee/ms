@@ -6,7 +6,7 @@ exports.signup = async (req, res) => {
   try {
     signupRes = await axios.post('http://localhost:5001/signup', {email, password});
   } catch (err) {
-    res.json(err);
+    return res.status(400).json(err.response.data);
   }
   res.json(signupRes.data);
 }
@@ -17,7 +17,7 @@ exports.login = async (req, res) => {
   try {
     loginRes = await axios.post('http://localhost:5001/login', {email, password});
   } catch (err) {
-    res.json(err);
+    return res.status(400).json(err.response.data);
   }
   res.json(loginRes.data);
 }

@@ -48,17 +48,3 @@ exports.validateLogin = (data) => {
     isValid: Object.keys(errors).length === 0
   }
 }
-
-const validateUserId = (data) => {
-  let errors = {};
-  
-  data.userId = data.userId !== undefined ? data.userId : '';
-  if (!Validator.isInt(data.userId, {min: 0})) {
-    errors.userId = 'Valid userId greater than 0 is required';
-  }
-
-  return {
-    errors,
-    isValid: Object.keys(errors).length === 0
-  }
-}

@@ -9,10 +9,11 @@ exports.isAuthenticated = async (req, res, next) => {
       {headers: { 'Authorization': authString }}
     );
   } catch (err) {
-    res.json(err);
+    return res.status(400).json({session: 'Must be logged in'});
   }
+
   if (!authRes){
-    return res.json({message: 'Unauthorized'})
+    return res.status(400).json({message: 'Unauthorized'})
   }
   req.body.currentUser = authRes.data;
   next();

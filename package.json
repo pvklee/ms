@@ -1,0 +1,28 @@
+{
+  "name": "ms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "api-gateway": "npm run inspect --prefix api-gateway",
+    "authentication": "npm start --prefix authentication",
+    "reservations": "npm start --prefix reservations",
+    "venues": "npm start --prefix venues",
+    "frontend": "npm start --prefix frontend",
+    "start": "concurrently \"npm run api-gateway\" \"npm run authentication\" \"npm run reservations\" \"npm run venues\" \"npm run frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pvklee/ms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pvklee/ms/issues"
+  },
+  "homepage": "https://github.com/pvklee/ms#readme",
+  "dependencies": {
+    "concurrently": "^4.1.1"
+  }
+}

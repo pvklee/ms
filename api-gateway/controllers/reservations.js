@@ -6,7 +6,7 @@ exports.create = async (req, res) => {
   try {
     createRes = await axios.post('http://localhost:5003/create', {venue, date, currentUser});
   } catch (err) {
-    res.status(400).json(err);
+    return res.status(400).json(err.response.data);
   }
 
   res.json(createRes.data);
@@ -17,7 +17,7 @@ exports.all = async (req, res) => {
   try{
     allRes = await axios.get('http://localhost:5003/');
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json(err.response.data);
   }
   res.json(allRes.data);
 }
@@ -27,7 +27,7 @@ exports.my = async (req, res) => {
   try{
     myRes = await axios.get('http://localhost:5003/my');
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json(err.response.data);
   }
   res.json(myRes.data);
 }
