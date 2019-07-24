@@ -1,34 +1,33 @@
-const Venue = require('../models/Venue');
+const venuesRepository = require('../repositories/venues');
 
-exports.create = async (req, res) => {
-  const {name, description, address, currentUser} = req.body;
-  const newVenue = new Venue({name, description, address, owner: currentUser});
-  let result;
-  try {
-    result = await newVenue.save();
-  } catch (errs) {
-    return res.status(400).json(errs);
-  }
-
-  return res.json(result);
-}
-
-exports.all = async (req, res) => {
-  let result;
-  try {
-    result = await Venue.find({}).sort({_id:-1});
-  } catch (errs) {
-    return res.status(400).json(errs);
+exports.create = async(req, res) => {
+  const {name, description, address, currentUser: owner} = req.body;
+  const {result, errors} = await venuesRepository.createNewVenue({
+    name,
+    description,
+    address,
+    owner,
+  });
+  if (errors) {
+    return res.status(400).json(errors);
   }
   return res.json(result);
-}
+};
 
-exports.detail = async (req, res) => {
-  let result;
-  try {
-    result = await Venue.findById(req.params.venueId);
-  } catch (errs) {
-    return res.status(400).json(errs);
+exports.all = async(req, res) => {
+  const {result, errors} = await venuesRepository.fetchAllVenues();
+  if (errors) {
+    return res.status(400).json(errors);
   }
   return res.json(result);
-}
+};
+
+exports.detail = async(req, res) => {
+  const {result, errors} = await venuesRepository.fetchVenueById(
+    req.params.venueId
+  );
+  if (errors) {
+    return res.status(400).json(errors);
+  }
+  return res.json(result);
+};

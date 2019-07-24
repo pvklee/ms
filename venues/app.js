@@ -6,14 +6,14 @@ var logger = require('morgan');
 
 var venuesRouter = require('./routes/venues');
 
-//connect to mongoDB
-const {db: {mongoURI}} = require('./config/config')
+// connect to mongoDB
+const {db: {mongoURI}} = require('./config/config');
 const mongoose = require('mongoose');
 mongoose
   .connect(mongoURI, { useNewUrlParser: true })
-  .then(() => console.log("Connected to MongoDB successfully"))
+  .then(() => console.log('Connected to MongoDB successfully'))
   .catch(err => console.log(err));
-//----------------
+// ----------------
 
 var app = express();
 
@@ -40,7 +40,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.json({
     message: err.message,
-    error: err
+    error: err,
   });
 });
 
