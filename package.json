@@ -9,8 +9,9 @@
     "authentication": "npm start --prefix authentication",
     "reservations": "npm start --prefix reservations",
     "venues": "npm start --prefix venues",
+    "venues-py": "python venues-py/run-app.py",
     "frontend": "npm start --prefix frontend",
-    "start": "concurrently \"npm run api-gateway\" \"npm run authentication\" \"npm run reservations\" \"npm run venues\" \"npm run frontend\""
+    "start": "concurrently \"npm run api-gateway\" \"npm run authentication\" \"npm run reservations\" \"npm run venues-py\" \"npm run frontend\""
   },
   "repository": {
     "type": "git",

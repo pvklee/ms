@@ -1,0 +1,4 @@
+org/pvklee/venues/reservations/models/Reservation.class
+org/pvklee/venues/reservations/Application.class
+org/pvklee/venues/reservations/repositories/ReservationsRepository.class
+org/pvklee/venues/reservations/controllers/ReservationsController.class
