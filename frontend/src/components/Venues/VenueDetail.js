@@ -4,7 +4,6 @@ import Context from '../../containers/Context';
 import equalityCheck from '../../util/equalityCheck';
 import axios from 'axios';
 import {Helmet} from 'react-helmet';
-// import Calendar from 'react-calendar';
 import { Spin, Calendar, Button } from 'antd';
 import moment from 'moment';
 
@@ -81,11 +80,6 @@ const VenueDetail = memo((props) => {
           {address}<br/>
           {email}
         </div>
-        {/* <Calendar
-          calendarType="US"
-          onChange={d => setDate(d)}
-          value={date}
-        /> */}
         <div style={{ width: 300, border: '1px solid #d9d9d9', borderRadius: 4 }}>
           <Calendar value={moment(date)} fullscreen={false} onSelect={onCalendarSelect} />
         </div>
