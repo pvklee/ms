@@ -6,7 +6,7 @@ import {Helmet} from 'react-helmet';
 import {Input, Button} from 'antd';
 
 const LoginSignup = memo(({type}) => {
-  const path = (type === 'Login') ? '/users/login' : '/users/signup';
+  const path = (type === 'Login') ? '/users/login' : '/users/';
   
   const {
     setLogin

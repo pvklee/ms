@@ -3,36 +3,33 @@ package org.pvklee.venues.reservations.models;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class Reservation {
 
     @Id
-    @NotNull
     private ObjectId _id;
-    @NotNull
+    @NotBlank
     private String venue;
     @NotNull
     private Date resDate;
     @NotNull
-    private String bookerId;
-    @NotNull
-    private String bookerEmail;
+    private User currentUser;
 
-    public Reservation(ObjectId _id, String venue, String bookerId, String bookerEmail, Date resDate){
+    public Reservation(ObjectId _id, String venue, Date resDate, User currentUser){
         this._id = _id;
         this.venue = venue;
-        this.bookerId = bookerId;
-        this.bookerEmail = bookerEmail;
         this.resDate = resDate;
+        this.currentUser = currentUser;
     }
 
     @Override
     public String toString(){
         return String.format(
-                "Reservation[_id=%s, venue=%s, bookerId=%s, bookerEmail=%s, resDate=%t",
-                _id, venue, bookerId, bookerEmail, resDate
+                "Reservation[_id=%s, venue=%s, resDate=%s, currentUserId=%s, currentUserEmail=%s]",
+                _id, venue, resDate, currentUser.getId(), currentUser.getEmail()
         );
     }
 
@@ -60,19 +57,11 @@ public class Reservation {
         this.resDate = resDate;
     }
 
-    public String getBookerId() {
-        return bookerId;
+    public User getCurrentUser() {
+        return currentUser;
     }
 
-    public void setBookerId(String bookerId) {
-        this.bookerId = bookerId;
-    }
-
-    public String getBookerEmail() {
-        return bookerEmail;
-    }
-
-    public void setBookerEmail(String bookerEmail) {
-        this.bookerEmail = bookerEmail;
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 }

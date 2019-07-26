@@ -1,10 +1,10 @@
 const axios = require('axios');
 
 exports.create = async (req, res) => {
-  const {venue, date, currentUser} = req.body;
+  const {venue, resDate, currentUser} = req.body;
   let createRes;
   try {
-    createRes = await axios.post('http://localhost:5003/create', {venue, date, currentUser});
+    createRes = await axios.post('http://localhost:5003/', {venue, resDate, currentUser});
   } catch (err) {
     return res.status(400).json(err.response.data);
   }

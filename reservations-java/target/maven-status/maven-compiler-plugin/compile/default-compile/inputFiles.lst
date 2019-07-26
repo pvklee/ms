@@ -1,4 +1,5 @@
 /Users/kevinlee/ms/reservations-java/src/main/java/org/pvklee/venues/reservations/models/Reservation.java
 /Users/kevinlee/ms/reservations-java/src/main/java/org/pvklee/venues/reservations/repositories/ReservationsRepository.java
 /Users/kevinlee/ms/reservations-java/src/main/java/org/pvklee/venues/reservations/Application.java
+/Users/kevinlee/ms/reservations-java/src/main/java/org/pvklee/venues/reservations/models/User.java
 /Users/kevinlee/ms/reservations-java/src/main/java/org/pvklee/venues/reservations/controllers/ReservationsController.java

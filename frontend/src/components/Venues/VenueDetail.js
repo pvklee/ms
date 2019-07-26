@@ -52,7 +52,7 @@ const VenueDetail = memo((props) => {
     setReservingMessage('Reserving...');
     let reservationData;
     try{
-      reservationData = await axios.post('/reservations/create', {venue: venueId, date});
+      reservationData = await axios.post('/reservations/', {venue: venueId, resDate: date});
     } catch (err) {
       setReservingMessage('');
       return errorHandler(err.response.data);
